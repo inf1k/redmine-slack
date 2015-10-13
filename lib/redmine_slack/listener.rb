@@ -9,7 +9,7 @@ class SlackListener < Redmine::Hook::Listener
 
 		return unless channel and url
 
-		msg = "[#{escape issue.project}] #{escape issue.author} created <#{object_url issue}|#{escape issue}>#{mentions issue.description}"
+		msg = "#{escape issue.project}: #{escape issue.author} created <#{object_url issue}|#{escape issue}>#{mentions issue.description}"
 
 		attachment = {}
 		attachment[:text] = escape issue.description if issue.description
