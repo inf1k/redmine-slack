@@ -45,7 +45,7 @@ class SlackListener < Redmine::Hook::Listener
 
 		return unless channel and url and Setting.plugin_redmine_slack[:post_updates] == '1'
 
-		msg = "[#{escape issue.project}] #{escape journal.user.to_s} updated <#{object_url issue}|#{escape issue}>#{mentions journal.notes}"
+		msg = "#{escape issue.project}: #{escape journal.user.to_s} updated <#{object_url issue}|#{escape issue}>#{mentions journal.notes}"
 
 		attachment = {}
 		attachment[:text] = escape journal.notes if journal.notes
@@ -64,7 +64,7 @@ class SlackListener < Redmine::Hook::Listener
 
 		return unless channel and url and issue.save
 
-		msg = "[#{escape issue.project}] #{escape journal.user.to_s} updated <#{object_url issue}|#{escape issue}>"
+		msg = "#{escape issue.project}: #{escape journal.user.to_s} updated <#{object_url issue}|#{escape issue}>"
 
 		repository = changeset.repository
 
